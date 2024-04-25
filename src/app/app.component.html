@@ -1,1 +1,11 @@
-<p>Olá, mundo!</p>
+<ul>
+  <li *ngFor="let titulo of titulos">{{ titulo }}</li>
+</ul>
+
+<img
+  *ngFor="let imagem of imagens"
+  src="{{ imagem }}"
+  alt="Angular Logo"
+  width="300"
+  height="300"
+/>

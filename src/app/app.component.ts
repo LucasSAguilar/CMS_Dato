@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -5,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule],
+  imports: [RouterOutlet, HttpClientModule, NgFor],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -14,6 +15,7 @@ export class AppComponent {
   apiUrl = 'https://graphql.datocms.com/';
   authToken = 'bec83a609f470a13b042611bbd1c77';
   titulos = [];
+  imagens = [];
 
   constructor(private http: HttpClient) {
     this.fazerColeta();
@@ -29,12 +31,7 @@ export class AppComponent {
         {
           allTitulos {
             id
-            issoExemploDeTitulo
-            _status
-            _firstPublishedAt
-          }
-          _allTitulosMeta {
-            count
+            nome
           }
         }
         `,
@@ -44,7 +41,10 @@ export class AppComponent {
   // ----------------------------
   fazerColeta() {
     this.getProducts().subscribe((response) => {
-      console.log(response);
+      console.log(response.data.allTitulos);
+      this.titulos = response.data.allTitulos.map(
+        (titulo: any) => titulo.nome
+      );
     });
   }
 

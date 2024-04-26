@@ -1,11 +1,15 @@
-<ul>
-  <li *ngFor="let titulo of titulos">{{ titulo }}</li>
-</ul>
+<body>
+  <ul class="lista-titulos">
+    <li *ngFor="let titulo of titulos">| {{ titulo }} |</li>
+  </ul>
 
-<img
-  *ngFor="let titulo of titulos"
-  src="{{ titulo }}"
-  alt="Angular Logo"
-  width="300"
-  height="300"
-/>
+  <div class="lista-imagens">
+    <img
+      *ngFor="let imagem of imagens"
+      src="{{ imagem }}"
+      alt="Imagem aleatoria"
+      width="300"
+      height="300"
+    />
+  </div>
+</body>
